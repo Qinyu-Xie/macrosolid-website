@@ -3,393 +3,1249 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Macrosolid Solutions</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Macrosolid Solutions — Sourced. Inspected. Delivered.</title>
+  <meta name="description" content="Macrosolid Solutions sources, inspects, and delivers quality products to businesses worldwide. Competitive pricing, strict QC, and reliable delivery to 30+ countries." />
+  <meta name="keywords" content="product supplier China, consumer electronics supplier, office furniture wholesale, OEM ODM supplier Shenzhen, private label electronics" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Macrosolid Solutions — Quality Electronics & Office Products from China" />
+  <meta property="og:description" content="Direct-source supplier of consumer electronics and office furniture. Strict QC, competitive pricing, delivery to 30+ countries." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://macrosolid-website.vercel.app/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Macrosolid Solutions — Electronics & Office Product Supplier" />
+  <meta name="twitter:description" content="Direct-source supplier of consumer electronics and office furniture from China." />
+
+  <link rel="canonical" href="https://macrosolid-website.vercel.app/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Mulish:wght@700;800;900&family=Poppins:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1B3A6B',
-            accent: '#2E86C1',
-          }
-        }
-      }
-    }
-  </script>
+
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Dark palette — Direction 3: Deep Teal */
+      --dk-bg: #141414;
+      --dk-bg-card: #1c1c1c;
+      --dk-bg-elevated: #242424;
+      --dk-text: #f0eeeb;
+      --dk-text-secondary: #a8a29e;
+      --dk-text-muted: #78716c;
+      --dk-border: rgba(255, 255, 255, 0.08);
+
+      /* Light palette — warm off-whites */
+      --lt-bg: #faf9f7;
+      --lt-bg-alt: #f4f2ed;
+      --lt-bg-card: #ffffff;
+      --lt-bg-elevated: #ebe9e3;
+      --lt-text: #1c1917;
+      --lt-text-secondary: #57534e;
+      --lt-text-muted: #a8a29e;
+      --lt-border: rgba(28, 25, 23, 0.08);
+
+      /* Accent — deep teal */
+      --accent: #2A8A7A;
+      --accent-dark: #1F6E62;
+      --accent-light: #3DAE9C;
+      --accent-glow: rgba(42, 138, 122, 0.12);
+      --accent-subtle: rgba(42, 138, 122, 0.05);
+
+      --green-wa: #25d366;
+    }
+
     html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--lt-bg);
+      color: var(--lt-text-secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Instrument Serif', serif; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── HEADER (MINIMAL) ─── */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.75rem 0;
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+    }
+    header.scrolled {
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      padding: 1rem 0;
+    }
+    header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ─── LOGO (Geometric line-art style) ─── */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 56px;
+      height: 48px;
+      margin-bottom: 0.6rem;
+    }
+    .logo-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    .logo-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .logo-sub {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 0.2rem;
+    }
+
+    /* ─── MENU TRIGGER ─── */
+    .menu-trigger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.05em;
+      padding: 0.5rem;
+      transition: opacity 0.3s;
+    }
+    .menu-trigger {
+      position: relative;
+    }
+    .menu-trigger::after {
+      content: '';
+      position: absolute;
+      bottom: 0.25rem;
+      left: 0.5rem;
+      right: 0.5rem;
+      height: 1px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+    .menu-trigger:hover::after { transform: scaleX(1); }
+    .menu-trigger:hover { opacity: 1; }
+
+    /* ─── FULLSCREEN MENU OVERLAY ─── */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: var(--dk-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .menu-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .menu-overlay-close {
+      position: absolute;
+      top: 1.75rem;
+      right: clamp(1.5rem, 4vw, 3rem);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .menu-overlay-close:hover { color: #fff; }
+    .menu-overlay nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .menu-overlay nav a {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1;
+      padding: 0.6rem 0;
+      transition: color 0.3s, transform 0.3s;
+      display: block;
+    }
+    .menu-overlay nav a:hover {
+      color: #fff;
+      transform: translateX(8px);
+    }
+    .menu-overlay-footer {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-size: 0.82rem;
+    }
+    .menu-overlay-footer a {
+      color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.3s;
+    }
+    .menu-overlay-footer a:hover { color: #fff; }
+    .menu-overlay-footer svg { width: 16px; height: 16px; }
+
+    /* Staggered menu animation */
+    .menu-overlay nav a {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s, color 0.3s;
+    }
+    .menu-overlay.open nav a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .menu-overlay.open nav a:nth-child(1) { transition-delay: 0.05s; }
+    .menu-overlay.open nav a:nth-child(2) { transition-delay: 0.1s; }
+    .menu-overlay.open nav a:nth-child(3) { transition-delay: 0.15s; }
+    .menu-overlay.open nav a:nth-child(4) { transition-delay: 0.2s; }
+    .menu-overlay.open nav a:nth-child(5) { transition-delay: 0.25s; }
+    .menu-overlay.open nav a:nth-child(6) { transition-delay: 0.3s; }
+    .menu-overlay.open nav a:nth-child(7) { transition-delay: 0.35s; }
+
+    /* ─── HERO (FULL-SCREEN VIDEO) ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) brightness(0.4);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+    .hero-content h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.2rem, 2.4vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      color: #fff;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .hero-content h1 em {
+      font-style: normal;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.5s ease-in-out infinite;
+    }
+    .hero-scroll svg { width: 20px; height: 20px; }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.45; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 0.8; }
+    }
+
+    /* ─── INTRO SECTION (product showcase + CTA) ─── */
+    .intro {
+      background: var(--dk-bg);
+      color: var(--dk-text-secondary);
+      padding: 7rem 0;
+    }
+    .intro-inner {
+      max-width: 720px;
+    }
+    .intro-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+    }
+    .intro h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      color: var(--dk-text);
+      font-weight: 600;
+    }
+    .intro-desc {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--dk-text-secondary);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+    .intro-promise {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--dk-text);
+      font-weight: 500;
+      margin-bottom: 3rem;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--accent);
+    }
+    .intro-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .intro-stats { gap: 2rem; }
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(42, 138, 122, 0.35);
+    }
+    .btn-secondary-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--dk-text);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      border: 1px solid var(--dk-border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-secondary-dark:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--accent-subtle);
+    }
+
+
+    /* ─── STATS (LIGHT) ─── */
+    .stats {
+      background: var(--lt-bg);
+      border-bottom: 1px solid var(--lt-border);
+      padding: 3.5rem 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.8rem;
+      color: var(--accent-dark);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lt-text-muted);
+      font-weight: 500;
+    }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ─── VALUE PROP (LIGHT) ─── */
+    .value-prop {
+      background: var(--lt-bg);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .value-prop-headline {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 700;
+      color: var(--lt-text);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+    .value-prop-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--lt-text-secondary);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ─── PARTNERSHIP (CINEMATIC) ─── */
+    .partnership {
+      position: relative;
+      height: 60vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .partnership-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .partnership-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+    .partnership-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .partnership-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 700px;
+    }
+    .partnership-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 300;
+    }
+    .partnership-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    .section { padding: 7rem 0; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ─── PRODUCTS (DARK) ─── */
+    .products {
+      background: var(--dk-bg);
+      color: var(--dk-text-secondary);
+    }
+    .products .section-title { color: var(--dk-text); }
+    .products-header {
+      margin-bottom: 3rem;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--dk-bg-card);
+      border: 1px solid var(--dk-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .product-card:hover {
+      border-color: rgba(42, 138, 122, 0.3);
+      transform: translateY(-4px);
+    }
+    .product-card-img {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: #f0eeeb;
+      border-radius: 12px 12px 0 0;
+    }
+    .product-card-img img {
+      max-width: 80%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover .product-card-img img {
+      transform: scale(1.05);
+    }
+    .product-card-info {
+      padding: 1.5rem 2rem 2rem;
+    }
+    .product-card-info h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--dk-text);
+      margin-bottom: 0.5rem;
+    }
+    .product-card-info p {
+      font-size: 0.9rem;
+      color: var(--dk-text-muted);
+      line-height: 1.6;
+    }
+    .products-note {
+      text-align: center;
+      color: var(--dk-text-muted);
+      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      line-height: 1.6;
+    }
+    .products-note a {
+      color: var(--accent-light);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .products-note a:hover { text-decoration: underline; }
+    @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } }
+
+    /* ─── SERVICES (LIGHT) ─── */
+    .services {
+      background: var(--lt-bg);
+      color: var(--lt-text-secondary);
+      padding: 3.5rem 0;
+    }
+    .services .section-title { color: var(--lt-text); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--lt-bg-alt);
+      border: 1px solid var(--lt-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .service-card:hover {
+      border-color: rgba(42, 138, 122, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card svg { width: 32px; height: 32px; color: var(--accent); margin-bottom: 1.25rem; }
+    .service-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--lt-text);
+      margin-bottom: 0.5rem;
+    }
+    .service-card p { font-size: 0.85rem; color: var(--lt-text-muted); line-height: 1.6; }
+    .service-card .service-highlight { font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.75rem; }
+    .service-card.featured {
+      border-color: rgba(42, 138, 122, 0.2);
+      background: linear-gradient(to bottom, var(--accent-subtle), var(--lt-bg-alt));
+    }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* ─── HOW IT WORKS (DARK) ─── */
+    .how {
+      background: var(--dk-bg);
+      color: var(--dk-text-secondary);
+    }
+    .how .section-title { color: var(--dk-text); }
+    .how .section-desc { color: var(--dk-text-secondary); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--dk-border), var(--dk-border), transparent);
+    }
+    .step { text-align: center; position: relative; }
+    .step-number {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--dk-bg-card);
+      border: 2px solid var(--dk-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 2;
+      transition: all 0.4s;
+    }
+    .step:hover .step-number {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .step h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dk-text);
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.85rem; color: var(--dk-text-muted); line-height: 1.5; }
+    @media (max-width: 768px) { .steps { grid-template-columns: 1fr 1fr; } .steps::before { display: none; } }
+
+    /* ─── TESTIMONIALS (LIGHT) ─── */
+    .testimonials {
+      background: var(--lt-bg-alt);
+      color: var(--lt-text-secondary);
+    }
+    .testimonials .section-title { color: var(--lt-text); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: var(--lt-bg-card);
+      border: 1px solid var(--lt-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.4s;
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(42, 138, 122, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .testimonial-stars { display: flex; gap: 3px; margin-bottom: 1.25rem; }
+    .testimonial-stars svg { width: 14px; height: 14px; fill: #f59e0b; color: #f59e0b; }
+    .testimonial-card blockquote {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--lt-text-secondary);
+      flex: 1;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--lt-border);
+      padding-top: 1.25rem;
+    }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .author-avatar.a { background: var(--accent); }
+    .author-avatar.b { background: var(--accent-light); }
+    .author-avatar.c { background: #64748b; }
+    .author-name { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--lt-text); }
+    .author-role { font-size: 0.75rem; color: var(--lt-text-muted); }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ─── WHY US (LIGHT) ─── */
+    .why {
+      background: var(--lt-bg);
+      color: var(--lt-text-secondary);
+    }
+    .why .section-title { color: var(--lt-text); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--lt-bg-alt);
+      border: 1px solid var(--lt-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.4s;
+    }
+    .why-card:hover {
+      border-color: rgba(42, 138, 122, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .why-card svg { width: 24px; height: 24px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .why-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--lt-text);
+      margin-bottom: 0.4rem;
+    }
+    .why-card p { font-size: 0.85rem; color: var(--lt-text-muted); line-height: 1.6; }
+    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* ─── CONTACT (LIGHT) ─── */
+    .contact {
+      background: var(--dk-bg);
+      color: var(--dk-text-secondary);
+    }
+    .contact .section-label { color: var(--accent); }
+    .contact .section-title { color: var(--dk-text); }
+    .contact .section-desc { color: var(--dk-text-secondary); }
+    .contact-wrap { max-width: 820px; margin: 0 auto; text-align: center; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      text-align: left;
+      align-items: start;
+    }
+    @media (max-width: 700px) { .contact-layout { grid-template-columns: 1fr; } }
+    .contact-form {
+      background: var(--dk-bg-card);
+      border: 1px solid var(--dk-border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--dk-text-secondary);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--dk-bg-elevated);
+      border: 1px solid var(--dk-border);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      color: var(--dk-text);
+      font-family: 'Outfit', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--dk-text-muted); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
+    .form-group textarea { resize: none; }
+    .submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Outfit', sans-serif;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(42, 138, 122, 0.3);
+    }
+    .form-note { font-size: 0.75rem; color: var(--dk-text-muted); text-align: center; margin-top: 1rem; }
+    .contact-alt {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-alt-card {
+      background: var(--dk-bg-card);
+      border: 1px solid var(--dk-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .contact-alt-card:hover { border-color: rgba(42, 138, 122, 0.25); }
+    .contact-alt-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dk-text);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .contact-alt-card h3 svg { width: 18px; height: 18px; color: var(--accent); }
+    .contact-alt-card p {
+      font-size: 0.85rem;
+      color: var(--dk-text-muted);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    .contact-alt-card a {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .contact-alt-card a:hover { color: var(--accent-dark); }
+
+    /* ─── FLOATING WHATSAPP ─── */
+
+    /* ─── FOOTER (DARK) ─── */
+    footer {
+      background: var(--dk-bg);
+      border-top: 1px solid var(--dk-border);
+      padding: 4rem 0 2rem;
+      color: var(--dk-text-secondary);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .logo-text { color: var(--dk-text); }
+    .footer-brand p { font-size: 0.85rem; color: var(--dk-text-muted); line-height: 1.6; margin-top: 1rem; }
+    .footer-col h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--dk-text);
+      margin-bottom: 1rem;
+    }
+    .footer-col a, .footer-col span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--dk-text-muted);
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--accent-light); }
+    .footer-bottom {
+      border-top: 1px solid var(--dk-border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: var(--dk-text-muted); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: 0.75rem; color: var(--dk-text-muted); transition: color 0.3s; }
+    .footer-bottom-links a:hover { color: var(--accent-light); }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body class="text-gray-700 font-sans">
+<body>
 
-  <!-- ─── HEADER ─── -->
-  <header class="fixed top-0 w-full bg-white shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-lg">M</span>
+  <!-- ─── HEADER (MINIMAL) ─── -->
+  <header id="mainHeader" role="banner">
+    <div class="container inner">
+      <a href="#" class="logo" aria-label="Macrosolid Solutions Home">
+        <div class="logo-icon">
+          <svg viewBox="0 0 56 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Geometric M made of horizontal lines -->
+            <g stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+              <!-- Left vertical -->
+              <line x1="2" y1="4" x2="2" y2="44" />
+              <!-- Right vertical -->
+              <line x1="54" y1="4" x2="54" y2="44" />
+              <!-- M diagonals -->
+              <line x1="2" y1="4" x2="28" y2="28" />
+              <line x1="54" y1="4" x2="28" y2="28" />
+              <!-- Horizontal bars -->
+              <line x1="0" y1="4" x2="56" y2="4" />
+              <line x1="0" y1="16" x2="18" y2="16" />
+              <line x1="38" y1="16" x2="56" y2="16" />
+              <line x1="0" y1="28" x2="12" y2="28" />
+              <line x1="22" y1="28" x2="34" y2="28" />
+              <line x1="44" y1="28" x2="56" y2="28" />
+              <line x1="0" y1="44" x2="56" y2="44" />
+            </g>
+          </svg>
         </div>
-        <span class="text-primary font-bold text-xl tracking-tight">Macrosolid Solutions</span>
-      </div>
-      <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-        <a href="#about" class="hover:text-primary transition">About</a>
-        <a href="#products" class="hover:text-primary transition">Products</a>
-        <a href="#services" class="hover:text-primary transition">Services</a>
-        <a href="#how" class="hover:text-primary transition">How It Works</a>
-        <a href="#contact" class="hover:text-primary transition">Contact</a>
-      </nav>
-      <a href="#contact" class="bg-primary text-white text-sm px-5 py-2 rounded-full font-medium hover:bg-accent transition">
-        Get a Quote
+        <span class="logo-name">Macrosolid</span>
+        <span class="logo-sub">Solutions</span>
       </a>
+      <button class="menu-trigger" onclick="toggleMenu()" aria-label="Open menu">Menu</button>
     </div>
   </header>
 
-  <!-- ─── HERO ─── -->
-  <section class="pt-32 pb-24 bg-gradient-to-br from-primary to-accent text-white text-center px-6">
-    <p class="text-sm uppercase tracking-widest mb-4 opacity-80">Your Trusted Product Supplier</p>
-    <h1 class="text-4xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto">
-      Quality Electronics &amp; Office Products <br class="hidden md:block"/> Delivered Worldwide
-    </h1>
-    <p class="mt-5 text-lg opacity-80 max-w-xl mx-auto">
-      We supply consumer electronics and ergonomic office furniture directly to businesses — competitive pricing, strict quality control, and reliable delivery.
-    </p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#contact" class="bg-white text-primary font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition">
-        Request a Quote
-      </a>
-      <a href="#products" class="border border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-primary transition">
-        View Products
-      </a>
+  <!-- ─── FULLSCREEN MENU OVERLAY ─── -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="menu-overlay-close" onclick="toggleMenu()" aria-label="Close menu">Close</button>
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="#products" onclick="toggleMenu()">Products</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
+      <a href="https://wa.me/8613510000000" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp</a>
+    </nav>
+    <div class="menu-overlay-footer">
+      <a href="mailto:info@macrosolid.com"><i data-lucide="mail"></i> info@macrosolid.com</a>
+      <a href="https://wa.me/8613510000000" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ─── HERO (FULL-SCREEN VIDEO) ─── -->
+  <section class="hero">
+    <div class="hero-video">
+      <video autoplay muted loop playsinline>
+        <source src="hero-bg.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="reveal">Sourced. Inspected. <em>Delivered.</em></h1>
+      <p class="hero-tagline reveal reveal-delay-1">Your Supply Chain, Solved.</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <i data-lucide="chevron-down"></i>
     </div>
   </section>
 
-  <!-- ─── STATS BAR ─── -->
-  <section class="bg-gray-50 border-y border-gray-200">
-    <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div>
-        <p class="text-3xl font-bold text-primary">500+</p>
-        <p class="text-sm text-gray-500 mt-1">Products Delivered</p>
-      </div>
-      <div>
-        <p class="text-3xl font-bold text-primary">200+</p>
-        <p class="text-sm text-gray-500 mt-1">Satisfied Clients</p>
-      </div>
-      <div>
-        <p class="text-3xl font-bold text-primary">30+</p>
-        <p class="text-sm text-gray-500 mt-1">Countries Served</p>
-      </div>
-      <div>
-        <p class="text-3xl font-bold text-primary">99%</p>
-        <p class="text-sm text-gray-500 mt-1">On-Time Delivery</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── ABOUT ─── -->
-  <section id="about" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-accent text-sm font-semibold uppercase tracking-widest mb-3">About Us</p>
-        <h2 class="text-3xl font-bold text-primary leading-tight mb-5">
-          Your Direct Source for Quality Products From China
+  <!-- ─── INTRO (Product showcase + CTA) ─── -->
+  <section class="intro">
+    <div class="container">
+      <div class="intro-inner">
+        <p class="intro-eyebrow reveal">The Problem</p>
+        <h2 class="reveal reveal-delay-1">
+          Managing overseas suppliers is complex,<br/>risky, and time-consuming.
         </h2>
-        <p class="text-gray-600 leading-relaxed mb-4">
-          Macrosolid Solutions is a product supplier specializing in consumer electronics and office furniture. We work directly with top-tier manufacturers to deliver high-quality products to businesses worldwide — at competitive prices.
+        <p class="intro-desc reveal reveal-delay-2">
+          Factory vetting, language barriers, quality inconsistencies, shipping delays — all before your product even reaches the warehouse. We handle all of it.
         </p>
-        <p class="text-gray-600 leading-relaxed">
-          From product selection to final delivery, we manage the entire supply chain: quality inspection, packaging, and global logistics — so you get exactly what you ordered, on time.
+        <p class="intro-promise reveal reveal-delay-3">
+          Problems arise — we own them, solve them, and keep you informed every step.
         </p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-blue-50 rounded-2xl p-6">
-          <i data-lucide="shield-check" class="w-8 h-8 text-accent mb-3"></i>
-          <h3 class="font-semibold text-primary mb-1">Quality Assured</h3>
-          <p class="text-sm text-gray-500">Every product inspected before it leaves the warehouse.</p>
-        </div>
-        <div class="bg-blue-50 rounded-2xl p-6">
-          <i data-lucide="tag" class="w-8 h-8 text-accent mb-3"></i>
-          <h3 class="font-semibold text-primary mb-1">Competitive Pricing</h3>
-          <p class="text-sm text-gray-500">Direct supply chain means better prices for your business.</p>
-        </div>
-        <div class="bg-blue-50 rounded-2xl p-6">
-          <i data-lucide="clipboard-check" class="w-8 h-8 text-accent mb-3"></i>
-          <h3 class="font-semibold text-primary mb-1">Strict QC Process</h3>
-          <p class="text-sm text-gray-500">Multi-stage inspection ensures every order meets spec.</p>
-        </div>
-        <div class="bg-blue-50 rounded-2xl p-6">
-          <i data-lucide="truck" class="w-8 h-8 text-accent mb-3"></i>
-          <h3 class="font-semibold text-primary mb-1">Global Shipping</h3>
-          <p class="text-sm text-gray-500">Sea, air, and express freight to any destination.</p>
+        <div class="intro-actions reveal reveal-delay-3">
+          <a href="#contact" class="btn-primary">
+            Request a Quote
+            <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+          </a>
+          <a href="#products" class="btn-secondary-dark">Learn More</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── PRODUCTS ─── -->
-  <section id="products" class="py-20 px-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-accent text-sm font-semibold uppercase tracking-widest mb-3">What We Supply</p>
-        <h2 class="text-3xl font-bold text-primary">Our Product Categories</h2>
-        <p class="text-gray-500 mt-3 max-w-xl mx-auto">We specialize in two core categories backed by rigorous quality control and reliable supply chains.</p>
+  <!-- ─── VALUE PROP (LIGHT) ─── -->
+  <section class="value-prop">
+    <div class="container">
+      <h2 class="value-prop-headline reveal">Grow revenue. Cut costs.</h2>
+      <p class="value-prop-desc reveal reveal-delay-1">One partner from factory to warehouse — fewer layers, better margins.</p>
+    </div>
+  </section>
+
+  <!-- ─── PARTNERSHIP (CINEMATIC) ─── -->
+  <section class="partnership">
+    <div class="partnership-bg">
+      <img src="images/partnership.png" alt="" loading="lazy" />
+    </div>
+    <div class="partnership-overlay"></div>
+    <div class="partnership-content">
+      <p class="partnership-text reveal">The distance between idea and product<br/>is shorter than you think.</p>
+    </div>
+  </section>
+
+  <!-- ─── PRODUCTS (DARK) ─── -->
+  <section id="products" class="section products">
+    <div class="container">
+      <div class="products-header">
+        <div>
+          <div class="section-label reveal">What We Supply</div>
+          <h2 class="section-title reveal reveal-delay-1">Our Product Categories</h2>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Electronics -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div class="bg-gradient-to-r from-primary to-accent p-6 text-white flex items-center gap-4">
-            <i data-lucide="cpu" class="w-10 h-10 flex-shrink-0"></i>
-            <div>
-              <h3 class="text-xl font-bold">Consumer Electronics</h3>
-              <p class="text-sm opacity-80 mt-1">Everyday tech accessories and peripherals</p>
-            </div>
+      <div class="products-grid">
+        <div class="product-card reveal">
+          <div class="product-card-img">
+            <img src="images/products/keyboard-rgb.png" alt="Consumer Electronics" />
           </div>
-          <div class="p-6">
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                Keyboards (mechanical, membrane, wireless)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                Chargers (GaN, wireless, multi-port)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                USB Cables (USB-C, Lightning, braided)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                Headsets &amp; Earbuds (gaming, ANC, TWS)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
-                Mouse (gaming, ergonomic, wireless)
-              </li>
-            </ul>
+          <div class="product-card-info">
+            <h3>Consumer Electronics</h3>
+            <p>Keyboards, chargers, cables, headsets, mice, and more.</p>
           </div>
         </div>
 
-        <!-- Office Furniture -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div class="bg-gradient-to-r from-gray-700 to-gray-500 p-6 text-white flex items-center gap-4">
-            <i data-lucide="armchair" class="w-10 h-10 flex-shrink-0"></i>
-            <div>
-              <h3 class="text-xl font-bold">Office Furniture</h3>
-              <p class="text-sm opacity-80 mt-1">Ergonomic workspace solutions</p>
-            </div>
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-card-img">
+            <img src="images/products/chair-o3.png" alt="Office Products" />
           </div>
-          <div class="p-6">
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-gray-500 rounded-full flex-shrink-0"></span>
-                Anti-Fatigue Mats (foam, gel, kitchen)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-gray-500 rounded-full flex-shrink-0"></span>
-                Laptop Desks (standing, lap, portable)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-gray-500 rounded-full flex-shrink-0"></span>
-                Ergonomic Chairs (mesh, lumbar support)
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-gray-500 rounded-full flex-shrink-0"></span>
-                Monitor Stands &amp; Desk Organizers
-              </li>
-              <li class="flex items-center gap-3 text-gray-600">
-                <span class="w-2 h-2 bg-gray-500 rounded-full flex-shrink-0"></span>
-                Cable Management Accessories
-              </li>
-            </ul>
+          <div class="product-card-info">
+            <h3>Office Products</h3>
+            <p>Ergonomic chairs, desks, mats, monitor stands, and accessories.</p>
           </div>
         </div>
       </div>
 
-      <p class="text-center text-gray-500 text-sm mt-8">
-        Don't see what you need? <a href="#contact" class="text-accent font-medium hover:underline">Contact us</a> — we can source custom products too.
+      <p class="products-note reveal reveal-delay-2">
+        These are our current focus areas — but we source across categories based on your needs. <a href="#contact">Let's talk.</a>
       </p>
     </div>
   </section>
 
-  <!-- ─── SERVICES ─── -->
-  <section id="services" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Services</p>
-        <h2 class="text-3xl font-bold text-primary">What We Do For You</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="package-search" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Product Sourcing</h3>
-          <p class="text-gray-500 text-sm">We find the right products from our vetted manufacturer network to match your specs and budget.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="scan-search" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Quality Inspection</h3>
-          <p class="text-gray-500 text-sm">On-site inspection before goods are packed and shipped — your protection against defects.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="palette" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Private Labeling</h3>
-          <p class="text-gray-500 text-sm">Custom branding, packaging design, and OEM/ODM support to build your own product line.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="plane" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Shipping &amp; Logistics</h3>
-          <p class="text-gray-500 text-sm">We coordinate sea, air, and express freight — with full customs documentation support.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="map-pin" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Order Tracking</h3>
-          <p class="text-gray-500 text-sm">Stay updated at every stage — from production to delivery — with regular status reports.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
-          <div class="flex justify-center mb-4"><i data-lucide="headset" class="w-10 h-10 text-accent"></i></div>
-          <h3 class="font-bold text-primary text-lg mb-2">Dedicated Support</h3>
-          <p class="text-gray-500 text-sm">One point of contact from quote to delivery — fast response, clear communication, no runaround.</p>
-        </div>
+  <!-- ─── SERVICES (LIGHT) ─── -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto;">
+        <p class="services-compact reveal" style="font-family:'Outfit',sans-serif; font-size:1.05rem; color:var(--lt-text-secondary); line-height:1.8; letter-spacing:0.01em;">
+          We also offer <strong style="color:var(--lt-text); font-weight:600;">private labeling &amp; OEM/ODM</strong> — custom logos, packaging, barcoding, and full product development with flexible MOQs.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ─── HOW IT WORKS ─── -->
-  <section id="how" class="py-20 px-6 bg-primary text-white">
-    <div class="max-w-4xl mx-auto text-center">
-      <p class="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-3">Process</p>
-      <h2 class="text-3xl font-bold mb-12">How It Works</h2>
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="flex flex-col items-center">
-          <div class="w-14 h-14 bg-white text-primary rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
-          <h3 class="font-semibold mb-2">Send Inquiry</h3>
-          <p class="text-sm text-blue-200">Tell us what you need — product type, quantity, and timeline.</p>
+  <!-- ─── CONTACT (LIGHT) ─── -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="section-label reveal" style="justify-content:center;">Contact</div>
+        <h2 class="section-title reveal reveal-delay-1">Let's Talk</h2>
+        <p class="section-desc reveal reveal-delay-2" style="margin:0 auto;">Whether you have a specific product in mind or just want to explore — we're happy to chat.</p>
+
+        <div class="contact-layout reveal reveal-delay-3">
+          <form class="contact-form" onsubmit="return false;">
+            <div class="form-group"><label for="contactName">Your Name *</label><input id="contactName" type="text" required placeholder="Name" /></div>
+            <div class="form-group"><label for="contactEmail">Email *</label><input id="contactEmail" type="email" required placeholder="email@company.com" /></div>
+            <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="4" placeholder="Tell us what you're looking for..."></textarea></div>
+            <button type="submit" class="submit-btn">Send Message</button>
+            <p class="form-note">We typically respond within 24 hours.</p>
+          </form>
+
+          <div class="contact-alt">
+            <div class="contact-alt-card">
+              <h3><i data-lucide="message-circle" aria-hidden="true"></i>WhatsApp</h3>
+              <p>Fastest way to reach us. Get a reply within minutes during business hours.</p>
+              <a href="https://wa.me/8613510000000" target="_blank" rel="noopener">+86 135 1000 0000 →</a>
+            </div>
+            <div class="contact-alt-card">
+              <h3><i data-lucide="mail" aria-hidden="true"></i>Email</h3>
+              <p>For detailed inquiries, specs, or documents.</p>
+              <a href="mailto:info@macrosolid.com">info@macrosolid.com →</a>
+            </div>
+            <div class="contact-alt-card">
+              <h3><i data-lucide="message-square" aria-hidden="true"></i>WeChat</h3>
+              <p>Prefer WeChat? Add us directly.</p>
+              <span style="font-size:0.85rem; color:var(--accent); font-weight:500;">macrosolid_solutions</span>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-col items-center">
-          <div class="w-14 h-14 bg-white text-primary rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
-          <h3 class="font-semibold mb-2">Get a Quote</h3>
-          <p class="text-sm text-blue-200">We send you pricing and product details within 48 hours.</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-14 h-14 bg-white text-primary rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
-          <h3 class="font-semibold mb-2">Confirm &amp; Produce</h3>
-          <p class="text-sm text-blue-200">Once confirmed, we handle production and quality checks.</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-14 h-14 bg-white text-primary rounded-full flex items-center justify-center text-xl font-bold mb-4">4</div>
-          <h3 class="font-semibold mb-2">Delivery</h3>
-          <p class="text-sm text-blue-200">Products ship to your door or warehouse with full tracking.</p>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ─── WHY US ─── -->
-  <section class="py-20 px-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Why Us</p>
-        <h2 class="text-3xl font-bold text-primary">Why Choose Macrosolid Solutions</h2>
+  <!-- ─── FOOTER (DARK) ─── -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="margin-bottom:0.25rem"><span class="logo-name" style="color:var(--dk-text)">Macrosolid</span><br/><span class="logo-sub">Solutions</span></div>
+          <p>Your direct-source supplier for consumer electronics and office furniture from Shenzhen, China.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <nav><a href="#products">Products</a><a href="#contact">Contact</a></nav>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <a href="mailto:info@macrosolid.com">info@macrosolid.com</a>
+          <a href="https://wa.me/8613510000000" target="_blank" rel="noopener">WhatsApp: +86 135 1000 0000</a>
+          <span>WeChat: macrosolid_solutions</span>
+          <span>Nanshan District, Shenzhen<br/>Guangdong Province, China 518000</span>
+        </div>
+        <div class="footer-col">
+          <h4>Certifications</h4>
+          <span>UL / ETL Listed Products</span>
+          <span>CE / FCC / RoHS</span>
+          <span>ISO 9001:2015</span>
+          <span>BSCI Audited Suppliers</span>
+        </div>
       </div>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="flex gap-4 items-start bg-white p-6 rounded-2xl border border-gray-100">
-          <i data-lucide="zap" class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"></i>
-          <div>
-            <h3 class="font-bold text-primary mb-1">Fast Turnaround</h3>
-            <p class="text-sm text-gray-500">Receive quotes within 48 hours. We move quickly so your business doesn't wait.</p>
-          </div>
-        </div>
-        <div class="flex gap-4 items-start bg-white p-6 rounded-2xl border border-gray-100">
-          <i data-lucide="shield" class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"></i>
-          <div>
-            <h3 class="font-bold text-primary mb-1">Quality Guaranteed</h3>
-            <p class="text-sm text-gray-500">Every product is inspected before shipment. We stand behind the quality of everything we deliver.</p>
-          </div>
-        </div>
-        <div class="flex gap-4 items-start bg-white p-6 rounded-2xl border border-gray-100">
-          <i data-lucide="globe" class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"></i>
-          <div>
-            <h3 class="font-bold text-primary mb-1">Global Delivery</h3>
-            <p class="text-sm text-gray-500">We ship to North America, Europe, Southeast Asia, the Middle East, and beyond.</p>
-          </div>
-        </div>
-        <div class="flex gap-4 items-start bg-white p-6 rounded-2xl border border-gray-100">
-          <i data-lucide="user-check" class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"></i>
-          <div>
-            <h3 class="font-bold text-primary mb-1">Dedicated Account Manager</h3>
-            <p class="text-sm text-gray-500">One point of contact from start to finish — no handoffs, no confusion.</p>
-          </div>
-        </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Macrosolid Solutions. All rights reserved.</p>
       </div>
     </div>
-  </section>
-
-  <!-- ─── CONTACT ─── -->
-  <section id="contact" class="py-20 px-6">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Contact</p>
-      <h2 class="text-3xl font-bold text-primary mb-4">Ready to Place an Order?</h2>
-      <p class="text-gray-500 mb-10">Fill out the form below and our team will get back to you within 24 hours.</p>
-
-      <form class="bg-white border border-gray-100 shadow-sm rounded-2xl p-8 text-left space-y-5">
-        <div class="grid md:grid-cols-2 gap-5">
-          <div>
-            <label class="block text-sm font-medium text-gray-600 mb-1">Your Name</label>
-            <input type="text" placeholder="John Smith" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-600 mb-1">Company Name</label>
-            <input type="text" placeholder="Your Company LLC" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
-          </div>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">Email Address</label>
-          <input type="email" placeholder="john@company.com" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">Product Category</label>
-          <select class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-accent">
-            <option value="">Select a category...</option>
-            <option>Consumer Electronics</option>
-            <option>Office Furniture</option>
-            <option>Both / Other</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-600 mb-1">Tell Us About Your Order</label>
-          <textarea rows="4" placeholder="Product name, estimated quantity, destination country, any specific requirements..." class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent resize-none"></textarea>
-        </div>
-        <button type="submit" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-accent transition">
-          Send Inquiry
-        </button>
-      </form>
-
-      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-8 text-sm text-gray-500">
-        <div class="flex items-center gap-2">
-          <i data-lucide="mail" class="w-4 h-4"></i>
-          <span>info@macrosolid.com</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          <span>WhatsApp / WeChat available</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <i data-lucide="map-pin" class="w-4 h-4"></i>
-          <span>Shenzhen, China</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <footer class="bg-primary text-white py-8 px-6 text-center text-sm">
-    <p class="font-semibold text-lg mb-1">Macrosolid Solutions</p>
-    <p class="text-blue-200 mb-4">Your Trusted Product Supplier</p>
-    <p class="text-blue-300 text-xs">&copy; 2026 Macrosolid Solutions. All rights reserved.</p>
   </footer>
 
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+    function toggleMenu() {
+      document.getElementById('menuOverlay').classList.toggle('open');
+      document.body.style.overflow = document.getElementById('menuOverlay').classList.contains('open') ? 'hidden' : '';
+    }
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
