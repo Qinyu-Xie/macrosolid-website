@@ -368,20 +368,24 @@
       color: var(--lt-text-muted);
       margin-bottom: 0.75rem;
     }
-    .trusted-by-list {
+    .trusted-by-logos {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--lt-text);
+      gap: 2rem 3rem;
     }
-    .trusted-by-dot {
-      color: var(--lt-text-muted);
-      font-weight: 300;
+    .trusted-by-logos img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1) brightness(0.35);
+      opacity: 0.7;
+      transition: opacity 0.3s, filter 0.3s;
+    }
+    .trusted-by-logos img:hover {
+      opacity: 1;
+      filter: grayscale(0);
     }
 
     /* ─── INTRO SECTION (product showcase + CTA) ─── */
@@ -1104,14 +1108,12 @@
   <section class="trusted-by">
     <div class="container">
       <span class="trusted-by-label">Trusted by</span>
-      <div class="trusted-by-list">
-        <span>Gulfstream Aerospace</span>
-        <span class="trusted-by-dot">·</span>
-        <span>Turkish Airlines</span>
-        <span class="trusted-by-dot">·</span>
-        <span>US Coast Guard</span>
-        <span class="trusted-by-dot">·</span>
-        <span>GameStop / EB Games</span>
+      <div class="trusted-by-logos">
+        <img src="images/logos/gulfstream.png" alt="Gulfstream Aerospace" />
+        <img src="images/logos/turkish-airlines.png" alt="Turkish Airlines" />
+        <img src="images/logos/us-coast-guard.svg" alt="US Coast Guard" />
+        <img src="images/logos/gamestop.svg" alt="GameStop" />
+        <img src="images/logos/eb-games.svg" alt="EB Games" />
       </div>
     </div>
   </section>
