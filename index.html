@@ -1078,11 +1078,11 @@
     <nav role="navigation" aria-label="Main navigation">
       <a href="#products" onclick="toggleMenu()">Products</a>
       <a href="#contact" onclick="toggleMenu()">Contact</a>
-      <a href="https://wa.me/8613510000000" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp</a>
+      <a href="https://wa.me/85251703337" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp</a>
     </nav>
     <div class="menu-overlay-footer">
-      <a href="mailto:info@macrosolid.com"><i data-lucide="mail"></i> info@macrosolid.com</a>
-      <a href="https://wa.me/8613510000000" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a>
+      <a href="mailto:hello@macrosolidsolutions.com"><i data-lucide="mail"></i> hello@macrosolidsolutions.com</a>
+      <a href="https://wa.me/85251703337" target="_blank" rel="noopener"><i data-lucide="message-circle"></i> WhatsApp</a>
     </div>
   </div>
 
@@ -1220,29 +1220,27 @@
         <p class="section-desc reveal reveal-delay-2" style="margin:0 auto;">Whether you have a specific product in mind or just want to explore — we're happy to chat.</p>
 
         <div class="contact-layout reveal reveal-delay-3">
-          <form class="contact-form" onsubmit="return false;">
-            <div class="form-group"><label for="contactName">Your Name *</label><input id="contactName" type="text" required placeholder="Name" /></div>
-            <div class="form-group"><label for="contactEmail">Email *</label><input id="contactEmail" type="email" required placeholder="email@company.com" /></div>
-            <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="4" placeholder="Tell us what you're looking for..."></textarea></div>
-            <button type="submit" class="submit-btn">Send Message</button>
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="to_email" value="hello@macrosolidsolutions.com" />
+            <input type="hidden" name="subject" value="New inquiry from Macrosolid Solutions website" />
+            <div class="form-group"><label for="contactName">Your Name *</label><input id="contactName" name="name" type="text" required placeholder="Name" /></div>
+            <div class="form-group"><label for="contactEmail">Email *</label><input id="contactEmail" name="email" type="email" required placeholder="email@company.com" /></div>
+            <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" name="message" rows="4" placeholder="Tell us what you're looking for..."></textarea></div>
+            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
             <p class="form-note">We typically respond within 24 hours.</p>
+            <p class="form-status" id="formStatus" style="text-align:center; margin-top:0.75rem; font-size:0.85rem; display:none;"></p>
           </form>
 
           <div class="contact-alt">
             <div class="contact-alt-card">
               <h3><i data-lucide="message-circle" aria-hidden="true"></i>WhatsApp</h3>
               <p>Fastest way to reach us. Get a reply within minutes during business hours.</p>
-              <a href="https://wa.me/8613510000000" target="_blank" rel="noopener">+86 135 1000 0000 →</a>
+              <a href="https://wa.me/85251703337" target="_blank" rel="noopener">+852 5170 3337 →</a>
             </div>
             <div class="contact-alt-card">
               <h3><i data-lucide="mail" aria-hidden="true"></i>Email</h3>
               <p>For detailed inquiries, specs, or documents.</p>
-              <a href="mailto:info@macrosolid.com">info@macrosolid.com →</a>
-            </div>
-            <div class="contact-alt-card">
-              <h3><i data-lucide="message-square" aria-hidden="true"></i>WeChat</h3>
-              <p>Prefer WeChat? Add us directly.</p>
-              <span style="font-size:0.85rem; color:var(--accent); font-weight:500;">macrosolid_solutions</span>
+              <a href="mailto:hello@macrosolidsolutions.com">hello@macrosolidsolutions.com →</a>
             </div>
           </div>
         </div>
@@ -1265,10 +1263,9 @@
         </div>
         <div class="footer-col">
           <h4>Contact Us</h4>
-          <a href="mailto:info@macrosolid.com">info@macrosolid.com</a>
-          <a href="https://wa.me/8613510000000" target="_blank" rel="noopener">WhatsApp: +86 135 1000 0000</a>
-          <span>WeChat: macrosolid_solutions</span>
-          <span>Nanshan District, Shenzhen<br/>Guangdong Province, China 518000</span>
+          <a href="mailto:hello@macrosolidsolutions.com">hello@macrosolidsolutions.com</a>
+          <a href="https://wa.me/85251703337" target="_blank" rel="noopener">WhatsApp: +852 5170 3337</a>
+          <span>Room No.01, Flat A&amp;B, 9/F<br/>Yick Shiu Industrial Building<br/>1 San On Street, Tuen Mun, NT<br/>Hong Kong</span>
         </div>
         <div class="footer-col">
           <h4>Certifications</h4>
@@ -1301,6 +1298,68 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     revealEls.forEach(el => observer.observe(el));
+
+    /* ─── Contact Form Handler ─── */
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+
+      if (!name || !email) {
+        formStatus.style.display = 'block';
+        formStatus.style.color = '#e74c3c';
+        formStatus.textContent = 'Please fill in all required fields.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formStatus.style.display = 'none';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'd445f5ff-a1cf-4924-8592-10ca24f7f425',
+            from_name: 'Macrosolid Solutions Website',
+            subject: 'New inquiry from ' + name,
+            name: name,
+            email: email,
+            message: message || '(No message provided)',
+            to: 'hello@macrosolidsolutions.com'
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = 'var(--accent)';
+          formStatus.textContent = 'Message sent! We\'ll get back to you shortly.';
+          contactForm.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        /* Fallback: open mailto link */
+        const subject = encodeURIComponent('Website Inquiry from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + (message || '(No message)'));
+        window.location.href = 'mailto:hello@macrosolidsolutions.com?subject=' + subject + '&body=' + body;
+        formStatus.style.display = 'block';
+        formStatus.style.color = 'var(--accent)';
+        formStatus.textContent = 'Opening your email client...';
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    });
   </script>
 </body>
 </html>
