@@ -720,7 +720,7 @@
     }
     .products-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1.5rem;
     }
     .product-card {
@@ -734,37 +734,66 @@
       border-color: rgba(42, 138, 122, 0.3);
       transform: translateY(-4px);
     }
-    .product-card-img {
+    .product-carousel {
       height: 220px;
+      position: relative;
+      background: #ffffff;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+    }
+    .product-carousel-slide {
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      background: #f0eeeb;
-      border-radius: 12px 12px 0 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-    .product-card-img img {
+    .product-carousel-slide.active {
+      opacity: 1;
+    }
+    .product-carousel-slide img {
       max-width: 80%;
       max-height: 100%;
       object-fit: contain;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .product-card:hover .product-card-img img {
-      transform: scale(1.05);
+    .product-carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .product-carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .product-carousel-dot.active {
+      background: rgba(0,0,0,0.5);
     }
     .product-card-info {
-      padding: 1.5rem 2rem 2rem;
+      padding: 1.5rem 1.5rem 1.75rem;
     }
     .product-card-info h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--dk-text);
       margin-bottom: 0.5rem;
     }
     .product-card-info p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--dk-text-muted);
       line-height: 1.6;
     }
@@ -781,7 +810,8 @@
       text-decoration: none;
     }
     .products-note a:hover { text-decoration: underline; }
-    @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 960px) { .products-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
 
     /* ─── SERVICES (LIGHT) ─── */
     .services {
@@ -1112,7 +1142,7 @@
       margin-bottom: 3rem;
     }
     .footer-brand .logo-text { color: var(--dk-text); }
-    .footer-brand p { font-size: 0.85rem; color: var(--dk-text-muted); line-height: 1.6; margin-top: 1rem; }
+    .footer-brand p { font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: var(--dk-text-muted); line-height: 1.6; margin-top: 1rem; }
     .footer-col h4 {
       font-family: 'Outfit', sans-serif;
       font-weight: 600;
@@ -1122,6 +1152,7 @@
     }
     .footer-col a, .footer-col span {
       display: block;
+      font-family: 'Outfit', sans-serif;
       font-size: 0.82rem;
       color: var(--dk-text-muted);
       margin-bottom: 0.5rem;
@@ -1137,9 +1168,9 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .footer-bottom p { font-size: 0.75rem; color: var(--dk-text-muted); }
+    .footer-bottom p { font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: var(--dk-text-muted); }
     .footer-bottom-links { display: flex; gap: 1.5rem; }
-    .footer-bottom-links a { font-size: 0.75rem; color: var(--dk-text-muted); transition: color 0.3s; }
+    .footer-bottom-links a { font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: var(--dk-text-muted); transition: color 0.3s; }
     .footer-bottom-links a:hover { color: var(--accent-light); }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
@@ -1244,8 +1275,7 @@
 
       <div class="value-prop-divider reveal reveal-delay-2"></div>
 
-      <p class="value-prop-section-title reveal reveal-delay-2">FROM FACTORY<br/>TO WAREHOUSE</p>
-      <p class="value-prop-cta reveal reveal-delay-2">Want to learn more about how we can streamline your next product sourcing or private label program?</p>
+      <p class="value-prop-section-title reveal reveal-delay-2">FROM IDEA<br/>TO WAREHOUSE</p>
 
       <div class="value-prop-steps reveal reveal-delay-3">
         <div class="value-prop-step">
@@ -1312,23 +1342,46 @@
       </div>
 
       <div class="products-grid">
+        <!-- Consumer Electronics -->
         <div class="product-card reveal">
-          <div class="product-card-img">
-            <img src="images/products/game-controller-red.png" alt="Consumer Electronics" />
+          <div class="product-carousel" data-interval="3000">
+            <div class="product-carousel-slide active"><img src="images/products/game-controller-red.png" alt="Gaming Controller" /></div>
+            <div class="product-carousel-slide"><img src="images/products/keyboard1.png" alt="Keyboard" /></div>
+            <div class="product-carousel-slide"><img src="images/products/headset1.png" alt="Headset" /></div>
+            <div class="product-carousel-slide"><img src="images/products/mouse1.png" alt="Mouse" /></div>
+            <div class="product-carousel-dots"></div>
           </div>
           <div class="product-card-info">
             <h3>Consumer Electronics</h3>
-            <p>Keyboards, chargers, cables, headsets, mice, and more.</p>
+            <p>Keyboards, chargers, cables, headsets, mice, controllers, and more.</p>
           </div>
         </div>
 
+        <!-- Office Products -->
         <div class="product-card reveal reveal-delay-1">
-          <div class="product-card-img">
-            <img src="images/products/chair-o3.png" alt="Office Products" />
+          <div class="product-carousel" data-interval="3500">
+            <div class="product-carousel-slide active"><img src="images/products/chair-o3.png" alt="Ergonomic Chair" /></div>
+            <div class="product-carousel-slide"><img src="images/products/desk.png" alt="Desk" /></div>
+            <div class="product-carousel-slide"><img src="images/products/mousepad1.png" alt="Mousepad" /></div>
+            <div class="product-carousel-slide"><img src="images/products/portable-vacuum.png" alt="Portable Vacuum" /></div>
+            <div class="product-carousel-dots"></div>
           </div>
           <div class="product-card-info">
             <h3>Office Products</h3>
             <p>Ergonomic chairs, desks, mats, monitor stands, and accessories.</p>
+          </div>
+        </div>
+
+        <!-- Outdoor Equipment -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-carousel" data-interval="4000">
+            <div class="product-carousel-slide active"><img src="images/products/trekking-pole.png" alt="Trekking Pole" /></div>
+            <div class="product-carousel-slide"><img src="images/products/foldable-chair.png" alt="Foldable Chair" /></div>
+            <div class="product-carousel-dots"></div>
+          </div>
+          <div class="product-card-info">
+            <h3>Outdoor &amp; Lifestyle</h3>
+            <p>Trekking poles, portable tools, and everyday carry essentials.</p>
           </div>
         </div>
       </div>
@@ -1339,16 +1392,6 @@
     </div>
   </section>
 
-  <!-- ─── SERVICES (LIGHT) ─── -->
-  <section id="services" class="section services">
-    <div class="container">
-      <div style="text-align:center; max-width:640px; margin:0 auto;">
-        <p class="services-compact reveal" style="font-family:'Outfit',sans-serif; font-size:1.05rem; color:var(--lt-text-secondary); line-height:1.8; letter-spacing:0.01em;">
-          We also offer <strong style="color:var(--lt-text); font-weight:600;">private labeling &amp; OEM/ODM</strong> — custom logos, packaging, barcoding, and full product development with flexible MOQs.
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- ─── CONTACT (LIGHT) ─── -->
   <section id="contact" class="section contact">
@@ -1394,7 +1437,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div style="margin-bottom:0.25rem"><span class="logo-name" style="color:var(--dk-text)">Macrosolid</span><br/><span class="logo-sub">Solutions</span></div>
-          <p>Your direct-source supplier for consumer electronics and office furniture.</p>
+          <p>Your direct-source partner from factory to warehouse — electronics, outdoor equipment, office products, and more.</p>
         </div>
         <div class="footer-col">
           <h4>Quick Links</h4>
@@ -1422,6 +1465,46 @@
 
   <script>
     lucide.createIcons();
+
+    // Product carousels
+    document.querySelectorAll('.product-carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('.product-carousel-slide');
+      const dotsContainer = carousel.querySelector('.product-carousel-dots');
+      const interval = parseInt(carousel.dataset.interval) || 3000;
+      let current = 0;
+      let timer;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'product-carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll('.product-carousel-dot');
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = index;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        resetTimer();
+      }
+
+      function next() { goTo((current + 1) % slides.length); }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, interval);
+      }
+
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', resetTimer);
+      resetTimer();
+    });
+
     function toggleMenu() {
       document.getElementById('menuOverlay').classList.toggle('open');
       document.body.style.overflow = document.getElementById('menuOverlay').classList.contains('open') ? 'hidden' : '';
