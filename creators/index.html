@@ -687,6 +687,26 @@
                     <p>Mountain-engraved connectors with USB-A, USB-C, and Lightning ends — one cable for every device on the trail.</p>
                 </div>
             </div>
+            <div class="product-card reveal reveal-delay-6">
+                <div class="product-card-image">
+                    <span class="badge-soon">Coming Soon</span>
+                    <img src="images/foldable-chair.png" alt="Compact Folding Stool">
+                </div>
+                <div class="product-card-body">
+                    <h4>Compact Folding Stool</h4>
+                    <p>A pocket-sized stool that deploys in seconds — four stainless-steel legs and a durable fabric seat that folds down to the size of an umbrella.</p>
+                </div>
+            </div>
+            <div class="product-card reveal reveal-delay-7">
+                <div class="product-card-image">
+                    <span class="badge-soon">Coming Soon</span>
+                    <img src="images/trekking-pole.avif" alt="Trekking Pole">
+                </div>
+                <div class="product-card-body">
+                    <h4>Trekking Pole</h4>
+                    <p>Lightweight, collapsible trekking pole with ergonomic grip — built for trails, hikes, and everyday adventures.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -737,8 +757,13 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
         reveals.forEach(el => observer.observe(el));
+
+        // Fallback: make everything visible after 2s in case observer misses
+        setTimeout(() => {
+            reveals.forEach(el => el.classList.add('visible'));
+        }, 2000);
 
         // Power bank image carousel — crossfade every 2.5s
         (function() {
